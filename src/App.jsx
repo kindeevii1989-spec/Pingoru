@@ -100,6 +100,20 @@ function App() {
           </div>
         </div>
 
+        <div className={`kangaroo ${isTesting ? 'active' : ''}`} aria-hidden="true">
+          <svg viewBox="0 0 220 120" role="img" focusable="false">
+            <path d="M30 98h160" className="kangaroo-ground" />
+            <path
+              d="M53 77c8-15 23-22 39-21 11 1 20 6 28 13l15-4 16 7-18 6c0 12-8 21-22 24l-29 4c-14 2-27-2-33-13-4-8-3-12 4-16z"
+              className="kangaroo-line"
+            />
+            <path d="M109 55l5-19 8 16" className="kangaroo-line" />
+            <path d="M86 90l-15 11" className="kangaroo-line" />
+            <path d="M124 92l17 9" className="kangaroo-line" />
+            <circle cx="128" cy="67" r="1.8" className="kangaroo-line" />
+          </svg>
+        </div>
+
         <button className="start-button" type="button" onClick={startTest} disabled={isTesting}>
           {isTesting ? 'Тестирование…' : 'Начать тест'}
         </button>

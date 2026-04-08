@@ -75,7 +75,7 @@ body {
 .speedometer-wrap {
   display: grid;
   place-items: center;
-  margin: 10px 0 18px;
+  margin: 10px 0 10px;
 }
 
 .speedometer {
@@ -128,6 +128,37 @@ body {
   font-size: clamp(0.75rem, 1.8vw, 0.92rem);
   text-transform: uppercase;
   letter-spacing: 0.09em;
+}
+
+.kangaroo {
+  margin: 0 auto 14px;
+  width: min(210px, 52vw);
+}
+
+.kangaroo svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  transform-origin: center 83%;
+  animation: none;
+}
+
+.kangaroo.active svg {
+  animation: jump 0.8s ease-in-out infinite;
+}
+
+.kangaroo-line {
+  stroke: rgba(226, 234, 255, 0.92);
+  stroke-width: 2.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+}
+
+.kangaroo-ground {
+  stroke: rgba(138, 152, 214, 0.35);
+  stroke-width: 2;
+  stroke-linecap: round;
 }
 
 .start-button {
@@ -193,6 +224,24 @@ body {
   }
   50% {
     transform: scale(1.015);
+  }
+}
+
+@keyframes jump {
+  0% {
+    transform: translateY(0) scale(1);
+  }
+  25% {
+    transform: translateY(-8px) scale(1.02);
+  }
+  50% {
+    transform: translateY(-16px) scale(1.04);
+  }
+  75% {
+    transform: translateY(-8px) scale(1.02);
+  }
+  100% {
+    transform: translateY(0) scale(1);
   }
 }
 
