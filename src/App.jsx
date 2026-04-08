@@ -102,15 +102,10 @@ function App() {
 
         <div className={`kangaroo ${isTesting ? 'active' : ''}`} aria-hidden="true">
           <svg viewBox="0 0 220 120" role="img" focusable="false">
-            <path d="M30 98h160" className="kangaroo-ground" />
             <path
-              d="M53 77c8-15 23-22 39-21 11 1 20 6 28 13l15-4 16 7-18 6c0 12-8 21-22 24l-29 4c-14 2-27-2-33-13-4-8-3-12 4-16z"
+              d="M28 86C44 78 58 65 73 55C92 42 114 36 136 40C149 42 160 48 169 56L187 52L172 64C166 70 163 76 161 82L147 80C138 88 126 93 112 96C89 101 67 97 51 89L33 92Z"
               className="kangaroo-line"
             />
-            <path d="M109 55l5-19 8 16" className="kangaroo-line" />
-            <path d="M86 90l-15 11" className="kangaroo-line" />
-            <path d="M124 92l17 9" className="kangaroo-line" />
-            <circle cx="128" cy="67" r="1.8" className="kangaroo-line" />
           </svg>
         </div>
 
