@@ -107,14 +107,12 @@ function KangarooIcon() {
   )
 }
 
-function MetricCircle({ label, value, unit }) {
+function MetricCircle({ className, label, value, unit }) {
   return (
-    <article className="metric-circle">
-      <div className="metric-inner">
-        <div className="metric-value">{value}</div>
-        <div className="metric-label">{label}</div>
-        <div className="metric-unit">{unit}</div>
-      </div>
+    <article className={`metric-circle ${className}`}>
+      <div className="metric-value">{value}</div>
+      <div className="metric-label">{label}</div>
+      <div className="metric-unit">{unit}</div>
     </article>
   )
 }
@@ -139,9 +137,9 @@ export default function App() {
         clearInterval(interval)
         setTimeout(() => {
           setIntroDone(true)
-        }, 280)
+        }, 140)
       }
-    }, 170)
+    }, 120)
 
     return () => clearInterval(interval)
   }, [])
@@ -154,15 +152,15 @@ export default function App() {
     setUpload('—')
 
     try {
-      setStatus('Измеряем ping...')
+      setStatus('Измеряем пинг...')
       const pingValue = await runPingTest()
       setPing(String(pingValue))
 
-      setStatus('Измеряем download...')
+      setStatus('Измеряем приём...')
       const downloadValue = await runDownloadTest()
       setDownload(String(downloadValue))
 
-      setStatus('Измеряем upload...')
+      setStatus('Измеряем отдачу...')
       const uploadValue = await runUploadTest()
       setUpload(String(uploadValue))
 
@@ -179,36 +177,30 @@ export default function App() {
   return (
     <main className={`app ${introDone ? 'intro-done' : ''}`}>
       <div className={`intro-layer ${introDone ? 'hidden' : ''}`}>
-        <div className="intro-card">
-          <div className="intro-text">{typedText || 'P'}</div>
-        </div>
+        <div className="intro-text">{typedText || 'P'}</div>
       </div>
 
-      <div className="panel">
-        <header className="topbar">
+      <section className={`main-orb ${introDone ? 'visible' : ''}`}>
+        <header className="orb-header">
           <h1 className="brand">{BRAND_TEXT}</h1>
           <div className={`brand-kangaroo ${loading ? 'active' : ''}`}>
             <KangarooIcon />
           </div>
         </header>
 
-        <p className="subtitle">Тест скорости интернета</p>
+        <button className="start-button" onClick={handleStart} disabled={loading}>
+          {loading ? '...' : 'Старт'}
+        </button>
 
-        <section className={`hero ${introDone ? 'visible' : ''}`}>
-          <button className="start-button" onClick={handleStart} disabled={loading}>
-            {loading ? 'Идёт тест...' : 'Начать тест'}
-          </button>
+        <div className="status">{status}</div>
+        {error ? <div className="error">{error}</div> : null}
 
-          <div className="status">{status}</div>
-          {error ? <div className="error">{error}</div> : null}
-
-          <div className="metrics">
-            <MetricCircle label="Ping" value={ping} unit="ms" />
-            <MetricCircle label="Download" value={download} unit="Mbps" />
-            <MetricCircle label="Upload" value={upload} unit="Mbps" />
-          </div>
-        </section>
-      </div>
+        <div className="stats-cluster">
+          <MetricCircle className="download" label="Приём" value={download} unit="Mbps" />
+          <MetricCircle className="upload" label="Отдача" value={upload} unit="Mbps" />
+          <MetricCircle className="ping" label="Пинг" value={ping} unit="ms" />
+        </div>
+      </section>
     </main>
   )
 }
